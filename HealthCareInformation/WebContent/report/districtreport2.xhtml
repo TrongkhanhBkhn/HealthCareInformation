@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<h:body>
+	<ui:composition template="/common/common.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<p:growl id="msgs" autoUpdate="true" />
+				<p:dataTable value="#{district2ReportView.reports}" var="report"
+					id="groupingTable">
+					<f:facet name="header">
+						<h:outputText value="#{district2ReportView.nameReport}"></h:outputText>
+					</f:facet>
+					<p:columnGroup type="header">
+						<p:row>
+							<p:column rowspan="2" headerText="STT" style="width:50px"/>
+							<p:column rowspan="2" headerText="Chỉ tiêu" />
+							<p:column colspan="2" headerText="Phụ nữ đẻ được NVYT đỡ" />
+							<p:column colspan="2" headerText="Trạm y tế xã/phường " />
+						</p:row>
+						<p:row>
+							<p:column headerText="Tổng số PN đẻ" />
+							<p:column headerText="PN đẻ được NVYT đỡ" />
+							<p:column headerText="Số trạm y tế xã/phường" />
+							<p:column headerText="TYT xã có Bác sĩ làm việc " />
+						</p:row>
+					</p:columnGroup>
+					<p:column  style="width:50px">
+						<h:outputText value="#{report.index}"></h:outputText>
+					</p:column>
+					<p:column>
+						<h:outputText value="#{report.organisation}"></h:outputText>
+					</p:column>
+					<p:columns value="#{district2ReportView.columns}" var="column">
+						<h:outputText value="#{report.map[column.property]}" style="float:right"/>
+					</p:columns>
+				</p:dataTable>
+				<p:panel header="Xuất dữ liệu PDF và Excel">
+					<p:commandLink id="pdf" ajax="false">
+						<p:graphicImage value="/resources/images/pdf.png" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="pdf" target="groupingTable"
+							fileName="districtreport2" />
+					</p:commandLink>
+					<p:spacer height="20" />
+
+					<p:commandLink id="xls" ajax="false">
+						<p:graphicImage value="/resources/images/excel.png" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="xlsx" target="groupingTable" 
+							fileName="districtreport2" />
+
+					</p:commandLink>
+				</p:panel>
+				<br />
+				<h:commandButton action="#{district2ReportView.btnBackClick}"
+					value="Quay lại trang chủ"
+					style="width:200px ;height:40px;font-size: 15px;"></h:commandButton>
+
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

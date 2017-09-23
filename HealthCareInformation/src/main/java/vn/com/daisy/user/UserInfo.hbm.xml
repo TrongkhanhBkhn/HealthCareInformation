@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 16, 2015 10:39:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="dad.UserInfo" table="UserInfo" catalog="HealthInformationSystem" optimistic-lock="version">
+        <id name="userInfoId" type="int">
+            <column name="UserInfoID" />
+            <generator class="assigned" />
+        </id>
+        <property name="surName" type="string">
+            <column name="SurName" length="160" not-null="true" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="FirstName" length="160" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="160" />
+        </property>
+        <property name="phoneNumber" type="string">
+            <column name="PhoneNumber" length="20" />
+        </property>
+        <property name="jobTitle" type="string">
+            <column name="JobTitle" length="160" />
+        </property>
+        <property name="introduction" type="string">
+            <column name="Introduction" length="160" />
+        </property>
+        <property name="gender" type="string">
+            <column name="Gender" length="80" />
+        </property>
+        <property name="birthday" type="timestamp">
+            <column name="Birthday" length="19" />
+        </property>
+        <property name="nationality" type="string">
+            <column name="Nationality" length="60" />
+        </property>
+        <property name="employer" type="string">
+            <column name="Employer" length="160" />
+        </property>
+        <property name="education" type="string">
+            <column name="Education" length="65535" />
+        </property>
+        <property name="interest" type="string">
+            <column name="Interest" length="65535" />
+        </property>
+        <property name="languages" type="string">
+            <column name="Languages" length="65535" />
+        </property>
+        <property name="organisationUnitId" type="java.lang.Integer">
+            <column name="OrganisationUnitID" />
+        </property>
+        <property name="uid" type="string">
+            <column name="UID" length="11" />
+        </property>
+        <property name="code" type="string">
+            <column name="Code" length="50" />
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <column name="LastUpdated" length="19" />
+        </property>
+        <property name="lastCheckedInterpretations" type="timestamp">
+            <column name="LastCheckedInterpretations" length="19" />
+        </property>
+        <property name="created" type="timestamp">
+            <column name="Created" length="19" />
+        </property>
+        <property name="disabled" type="java.lang.Boolean">
+            <column name="Disabled" />
+        </property>
+    </class>
+</hibernate-mapping>

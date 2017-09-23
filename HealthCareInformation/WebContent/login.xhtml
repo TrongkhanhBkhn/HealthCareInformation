@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login Account</title>
+
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/resources/css/stylelogin.css" />
+
+</h:head>
+<h:body>
+	<div>
+		<h:outputLabel
+			style="color: silver;margin-left: 400px;font-family: Montserrat;font-size: 30px;">BÁO CÁO SỐ LIỆU PHỤC VỤ GIẢI NGÂN EU</h:outputLabel>
+	</div>
+	<h:form styleClass="login-block">
+		<h:panelGrid columns="1" cellpadding="5">
+
+			<h:inputText disabled="false" required="false" styleClass="input"
+				id="username" value="#{login.userName}"></h:inputText>
+			<p:watermark for="username" value="Tên đăng nhập" />
+
+			<p:password feedback="true" id="password" value="#{login.password}"
+				styleClass="input"></p:password>
+			<p:watermark for="password" value="Mật khẩu" />
+		</h:panelGrid>
+		<p:panelGrid columns="2" cellpadding="3" styleClass="panelGridLogin" style="width:100%">
+			<h:commandButton action="#{login.validateUsernamePassword}"
+				value="Đăng nhập" styleClass="button" style="width:100%"></h:commandButton>
+			
+		</p:panelGrid>
+		<p:panelGrid columns="3" cellpadding="5" styleClass="panelGridLogin">
+			<h:selectBooleanCheckbox value="#{login.checkBox}" id="remembercb"
+				styleClass="checkbox"></h:selectBooleanCheckbox>
+			<h:outputLabel value="Nhớ mật khẩu" for="remembercb"
+				styleClass="label"></h:outputLabel>
+		</p:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

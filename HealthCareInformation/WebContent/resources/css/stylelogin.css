@@ -1,0 +1,110 @@
+@CHARSET "UTF-8";
+
+body {
+	background: url(../images/backgound.png);
+	background-repeat:no-repeat;
+	background-size: cover;
+	font-family: Montserrat;
+	
+}
+
+
+
+.login-block {
+	width: 250px;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	border-top: 5px solid #ff656c;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.input {
+	width: 120%;
+	height: 42px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	font-family: Montserrat;
+	padding: 0 20px 0 50px;
+	outline: none;
+	
+}
+
+
+.button {
+	width: 100px;
+	height: 40px;
+	background: olive;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: 1px solid #e15960;
+	color: #fff;
+	font-weight: bold;
+	text-transform: none;
+	font-size: 14px;
+	font-family: fantasy;
+	outline: none;
+	cursor: pointer;
+	
+}
+
+.button:HOVER {
+	background: #ff7b81;
+}
+
+.button1 {
+	width: 100px;
+	height: 40px;
+	background: olive;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: 1px solid #e15960;
+	color: #fff;
+	font-weight: bold;
+	text-transform: none;
+	font-size: 14px;
+	font-family: fantasy;
+	outline: none;
+	cursor: pointer;
+	margin-left: 10px;
+}
+.button1:HOVER {
+	background: #ff7b81;
+}
+
+.panelGridLogin, .panelGridLogin td, .panelGridLogin tr {
+	border: hidden;
+	border-color: white;
+}
+.checkbox{
+	width: 20px;
+	height:20px;
+	background: #fcfff4;
+	margin-left: 0;
+	display: run-in;
+	vertical-align:middle;
+	cursor: pointer;
+}
+.label{
+	font-size: 14px;
+	font-family: fantasy;
+	font: italic;
+	margin-left: 0px;
+}
+.outputText{
+	font-size: 14px;
+	font-family: fantasy;
+	font: italic;
+	color:red;
+	margin-left: 20px;
+}
+
+.labelTitle{
+	font-size: 24px;
+	font: italic;
+	text-align: center;
+	padding-left: 5px
+}

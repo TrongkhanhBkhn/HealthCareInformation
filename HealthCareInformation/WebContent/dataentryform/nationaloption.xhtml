@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login Account</title>
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/resources/css/stylelogin.css" />
+</h:head>
+<h:body>
+	<div class="logo"></div>
+	<h:form styleClass="login-block" id="form" style="width:290px">
+		<p:outputLabel value="Lựa Chọn Thông Số" style="color:red;padding-left: 30px;font-size: 24px;"></p:outputLabel>
+		<p:panelGrid columns="1">
+			<p:messages id="msgs" autoUpdate="true" />
+			<p:outputLabel value="Đơn vị cấp tỉnh" style="color:blue"></p:outputLabel>
+			<p:selectOneMenu effect="fold" editable="true" style="width:220px "
+				value="#{nationalOption.org}">
+				<f:selectItem itemLabel="Lựa chọn" />
+				<p:ajax event="change" update="district"
+					listener="#{nationalOption.onChanged}" />
+				<f:selectItems value="#{nationalOption.orgs}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Đơn vị cấp huyện" style="color:blue"></p:outputLabel>
+			<p:selectOneMenu id="district" effect="fold" editable="true" style="width:220px "
+				value="#{nationalOption.district}">
+				<f:selectItem itemLabel="Lựa chọn" />
+				<f:selectItems value="#{nationalOption.districts}" />
+			</p:selectOneMenu>
+			<p:commandButton value="Đồng ý"
+				action="#{nationalOption.btnOKClick}" style="width:100%"></p:commandButton>
+			<p:commandButton value="Trang chủ"
+				action="#{nationalOption.btnBackClick}" style="width:100%"></p:commandButton>
+			
+		</p:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

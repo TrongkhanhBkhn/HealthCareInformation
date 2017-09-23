@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<h:body>
+	<ui:composition template="/common/common.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<p:growl id="msgs" autoUpdate="true" />
+				<p:dataTable editable="false" value="#{district1ReportView.reports}"
+					var="report" id="groupingTable">
+					<f:facet name="header">
+						<h:outputText value="#{district1ReportView.nameReport}"></h:outputText>
+					</f:facet>
+					<p:column style="width:50px">
+						<f:facet name="header">
+							<h:outputText value="STT"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{report.index}"></h:outputText>
+
+					</p:column>
+					<p:column style="width:150px">
+						<f:facet name="header">
+							<h:outputText value="TÊN CỞ SỞ ĐÓNG TRÊN ĐỊA BÀN HUYỆN"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{report.organisation}"></h:outputText>
+					</p:column>
+					<p:columns value="#{district1ReportView.columns}" var="column"
+						style="width:150px">
+						<f:facet name="header">
+							<h:outputText value="#{column.header}" />
+						</f:facet>
+						<h:outputText value="#{report.map[column.property]}"
+							style="float:right" />
+					</p:columns>
+
+					<p:column headerText="GHI CHÚ">
+						<h:outputText value="#{report.note}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+				<p:dataTable value="#{district1ReportView.reports1}" var="report1"
+					id="groupingTable1">
+					<p:column style="width:50px">
+						<f:facet name="header">
+							<h:outputText value="STT"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{report1.index}"></h:outputText>
+					</p:column>
+					<p:column
+						style="width:150px">
+						<f:facet name="header">
+							<h:outputText value="TÊN CỞ SỞ ĐÓNG TRÊN ĐỊA BÀN HUYỆN"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{report1.organisation}"></h:outputText>
+					</p:column>
+					<p:columns value="#{district1ReportView.columns1}" var="column1"
+						style="width:150px">
+						<f:facet name="header">
+							<h:outputText value="#{column1.header}" />
+						</f:facet>
+						<h:outputText value="#{report1.map[column1.property]}"
+							style="float:right" />
+					</p:columns>
+					<p:column headerText="GHI CHÚ">
+						<h:outputText value="#{report1.note}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+				<p:panel header="Xuất dữ liệu PDF và Excel">
+					<p:commandLink id="pdf" ajax="false">
+						<p:graphicImage value="/resources/images/pdf.png" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="pdf" target="groupingTable,groupingTable1"
+							datasetPadding="4" fileName="districtreport1"
+							encoding="ISO-8859-1" facetFontSize="12" cellFontSize="10"
+							fontName="Vietnamese" />
+					</p:commandLink>
+					<p:spacer height="20" />
+
+					<p:commandLink id="xls" ajax="false">
+						<p:graphicImage value="/resources/images/excel.png" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="xlsx" target="groupingTable,groupingTable1"
+							datasetPadding="4" fileName="districtreport1" />
+
+					</p:commandLink>
+				</p:panel>
+				<h:commandButton action="#{district1ReportView.btnBackClick}"
+					value="Quay lại trang chủ"
+					style="width:200px ;height:40px;font-size: 15px;"></h:commandButton>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

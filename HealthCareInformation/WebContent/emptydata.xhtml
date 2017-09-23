@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Home</title>
+</head>
+<h:body>
+	<ui:composition template="/common/common.xhtml">
+		<ui:define name="content">
+			<h:form id="form">
+				<h:outputText value="#{accessService.emtydata}" escape="false" style="color:red;font-size: 18px;"></h:outputText>
+				<br/>
+				<h:commandButton action="#{accessService.btnBackClick}" value="Quay lại trang chủ" style="width:200px ;height:40px;font-size: 15px;"></h:commandButton>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+
+</html>

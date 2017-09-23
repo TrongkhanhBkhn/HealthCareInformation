@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 16, 2015 10:39:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="dad.User" table="User" catalog="HealthInformationSystem" optimistic-lock="version">
+        <id name="userId" type="int">
+            <column name="UserID" />
+            <generator class="assigned" />
+        </id>
+        <property name="userName" type="string">
+            <column name="UserName" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" />
+        </property>
+        <property name="lastLogin" type="timestamp">
+            <column name="LastLogin" length="19" />
+        </property>
+        <property name="passwordLastUpdated" type="timestamp">
+            <column name="PasswordLastUpdated" length="19" />
+        </property>
+        <property name="restoreToken" type="string">
+            <column name="RestoreToken" />
+        </property>
+        <property name="restoreCode" type="string">
+            <column name="RestoreCode" />
+        </property>
+        <property name="restoreExpiry" type="timestamp">
+            <column name="RestoreExpiry" length="19" />
+        </property>
+        <property name="selfRegistered" type="java.lang.Boolean">
+            <column name="SelfRegistered" />
+        </property>
+        <property name="disabled" type="java.lang.Boolean">
+            <column name="Disabled" />
+        </property>
+    </class>
+</hibernate-mapping>

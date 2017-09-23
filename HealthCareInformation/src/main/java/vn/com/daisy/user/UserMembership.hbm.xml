@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 16, 2015 10:39:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="dad.UserMembership" table="UserMembership" catalog="HealthInformationSystem" optimistic-lock="version">
+        <composite-id name="id" class="dad.UserMembershipId">
+            <key-property name="organisationUnitId" type="int">
+                <column name="OrganisationUnitID" />
+            </key-property>
+            <key-property name="userRoleId" type="int">
+                <column name="UserRoleID" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

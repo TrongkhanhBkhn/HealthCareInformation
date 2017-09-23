@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Insert title here</title>
+</h:head>
+<h:body>
+	<ui:composition template="/common/common.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<p:growl id="msgs" autoUpdate="true" />
+				<p:panelGrid id="grid" columns="3" cellpadding="5"
+					style="margin-left: 300px;">
+					<p:outputLabel value="Đăng ký cấp trung ương *"></p:outputLabel>
+						<p:selectBooleanCheckbox value="#{createNewUser.status1}"
+							itemLabel="Đăng ký cấp trung ương" style="color:red" id="status1">
+						</p:selectBooleanCheckbox>
+
+					<p:message for="status1" />
+					<p:outputLabel value="Đơn vị cấp tỉnh *"></p:outputLabel>
+					<p:selectOneMenu id="province" effect="fold" editable="true"
+						disabled="#{createNewUser.status2}" style="width:270px"
+						value="#{createNewUser.province}">
+						<f:selectItem itemLabel="Đơn vị cấp tỉnh" />
+						<p:ajax event="change" update="district"
+							listener="#{createNewUser.onChanged}" />
+						<f:selectItems value="#{createNewUser.provinces}" />
+					</p:selectOneMenu>
+					<p:message for="province" />
+					<p:outputLabel value="Tài khoản cấp huyện *"></p:outputLabel>
+					<p:selectBooleanCheckbox value="#{createNewUser.status}"
+						itemLabel="Không đăng ký cấp huyện" style="color:red" id="status">
+						<p:ajax update="district" listener="#{createNewUser.changeStated}" />
+					</p:selectBooleanCheckbox>
+					<p:message for="status" />
+					<p:outputLabel value="Đơn vị cấp huyện *"></p:outputLabel>
+					<p:selectOneMenu id="district" effect="fold" editable="true"
+						style="width:270px " value="#{createNewUser.district}"
+						disabled="#{createNewUser.status}">
+						<f:selectItem itemLabel="Đơn vị cấp huyện" />
+						<f:selectItems value="#{createNewUser.districts}" />
+					</p:selectOneMenu>
+					<p:message for="district" />
+					<p:outputLabel value="Tên *"></p:outputLabel>
+					<p:inputText id="name" style="width:300px "
+						value="#{createNewUser.userObj.name}"
+						requiredMessage="Vui Lòng Nhập Tên."
+						validatorMessage="Không tồn tại định dạng">
+
+						<f:validateLength minimum="6" />
+					</p:inputText>
+					<p:message for="name" />
+
+					<p:outputLabel value="Email *"></p:outputLabel>
+					<p:inputText id="email" required="true" label="email"
+						style="width:300px " requiredMessage="Vui lòng nhập Email."
+						validatorMessage="Không tồn tại định dạng"
+						value="#{createNewUser.userObj.email}">
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</p:inputText>
+					<p:message for="email" autoUpdate="true" />
+					<p:outputLabel value="Điện Thoại:"></p:outputLabel>
+					<p:inputText id="phone" required="true" label="phone"
+						style="width:300px " value="#{createNewUser.userObj.phoneNum}"
+						requiredMessage="Vui lòng nhập số điện thoại."
+						validatorMessage="Không tồn tại định dạng">
+						<f:validateRegex pattern="^*0+[0-9]+$" />
+						<f:validateLength minimum="10" maximum="12" />
+					</p:inputText>
+					<p:message for="phone"></p:message>
+
+					<p:outputLabel value="Tên Đăng Nhập *"></p:outputLabel>
+					<p:inputText id="userName" size="30" label="userName"
+						style="width:300px " value="#{createNewUser.userObj.username}"
+						requiredMessage="Vui lòng nhập tên đăng nhập."
+						validatorMessage="Không tồn tại định dạng">
+						<f:validateRegex pattern="^[a-zA-Z0-9]+$" />
+						<f:validateLength minimum="6" />
+					</p:inputText>
+					<p:message for="userName" />
+
+					<p:outputLabel value="Mật Khẩu *"></p:outputLabel>
+					<p:password id="password" feedback="true" required="true"
+						style="width:300px " value="#{createNewUser.userObj.password}"
+						requiredMessage="Vui lòng nhập mật khẩu." match="rePassword"
+						validatorMessage="Mật khẩu sai hoặc không khớp">
+						<f:validateLength minimum="6" />
+					</p:password>
+					<p:message for="password" />
+					<p:outputLabel value="Nhập lại mật khẩu *"></p:outputLabel>
+					<p:password id="rePassword" feedback="true" required="true"
+						style="width:300px " value="#{createNewUser.userObj.rePassword}"
+						requiredMessage="Vui lòng nhập mật khẩu."
+						validatorMessage="Mật khẩu không trùng khớp">
+						<f:validateLength minimum="6" />
+					</p:password>
+
+					<p:message for="rePassword" />
+
+
+				</p:panelGrid>
+
+				<p:commandButton ajax="false" value="Đăng Ký"
+					style="margin-left: 480px;width:150px"
+					actionListener="#{createNewUser.registerClick}"></p:commandButton>
+
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

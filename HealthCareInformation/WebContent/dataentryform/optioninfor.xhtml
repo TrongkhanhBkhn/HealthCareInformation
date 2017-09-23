@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login Account</title>
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/resources/css/stylelogin.css" />
+</h:head>
+<h:body>
+	<div class="logo"></div>
+	<h:form styleClass="login-block" id="form" style="width:290px">
+		<p:outputLabel value="Lựa Chọn Thông Số" style="color:red;padding-left: 30px;font-size: 24px;"></p:outputLabel>
+		<p:panelGrid columns="1">
+			<p:messages id="msgs" autoUpdate="true" />
+			<p:outputLabel value="Tập Dữ Liệu" style="color:blue"></p:outputLabel>
+			<p:selectOneMenu id="dataset" effect="fold" editable="true" style="width:220px "
+				value="#{inforSelect.dataset}">
+				<f:selectItem itemLabel="Lựa chọn" />
+				<f:selectItems value="#{inforSelect.datasets}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Kỳ Báo Cáo" style="color:blue"></p:outputLabel>
+			<p:selectOneMenu id="period" effect="fold" editable="true" style="width:220px "
+				value="#{inforSelect.periodType}">
+				<f:selectItem itemLabel="Lựa chọn" />
+				<f:selectItems value="#{inforSelect.periodTypes}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Đơn Vị Tổ Chức Cấp Trung Ương" style="color:blue"></p:outputLabel>
+			<h:outputText id="orgNational"
+				value="#{inforSelect.orgUnitNational}"></h:outputText>
+
+			<p:outputLabel value="Đơn Vị Tổ Chức Cấp Tỉnh" style="color:blue"></p:outputLabel>
+			<h:outputText id="orgProvince"
+				value="#{inforSelect.orgUnitsProvince}"></h:outputText>
+			<p:outputLabel value="Đơn Vị Tổ Chức Cấp Huyện" style="color:blue"></p:outputLabel>
+			<h:outputText id="orgDistrict"
+				value="#{inforSelect.orgUnitsDistrict}"></h:outputText>
+			<p:commandButton value="Đồng ý" action="#{inforSelect.btnOKClick}" style="width:100%"></p:commandButton>
+			<p:commandButton value="Trang chủ" action="#{inforSelect.btnBackClick}" style="width:100%"></p:commandButton>
+			
+		</p:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

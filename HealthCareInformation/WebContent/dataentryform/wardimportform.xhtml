@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<h:body>
+	<ui:composition template="/common/common.xhtml">
+		<ui:define name="content">
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true" autoUpdate="true" />
+				<p:dataTable var="row" value="#{wardImportView.districts}"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					paginator="true" editable="true" editMode="row">
+					<f:facet name="header">#{wardImportView.dataset_name}</f:facet>
+					<p:ajax event="rowEdit" listener="#{wardImportView.onRowEdit}"
+						update=":form:msgs" />
+					<p:columnGroup type="header">
+						<p:row>					
+							<p:columns var="column"
+								value="#{wardImportView.columnGroupRowsSpan}"
+								headerText="#{column.name}" rowspan="#{column.size}">
+							</p:columns>
+							<p:columns var="column"
+								value="#{wardImportView.columnGroupColsSpan}"
+								headerText="#{column.name}" colspan="#{column.size}">
+							</p:columns>
+							<p:column colspan="1" headerText="Tạo số liệu"
+								visible="#{wardImportView.status}">
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:columns var="column" value="#{wardImportView.columns}"
+								headerText="#{column.header}">
+							</p:columns>
+							<p:column headerText="Tạo số liệu"
+								visible="#{wardImportView.status}">
+							</p:column>
+						</p:row>
+					</p:columnGroup>
+					<p:column>
+						<h:outputText value="#{row.organisation}" />
+					</p:column>
+					<p:columns var="column" value="#{wardImportView.columns}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{row.dataelement[column.property]}" style="float:right"/>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{row.dataelement[column.property]}" 
+									validatorMessage="Dữ liệu không trong dải cho phép nhập,vui lòng nhập:0-1000000">
+									<pe:keyFilter mask="num"></pe:keyFilter>
+									<f:validateLongRange minimum="0" maximum="1000000" />
+								</p:inputText>
+
+							</f:facet>
+						</p:cellEditor>
+					</p:columns>
+					<p:column style="width:32px" visible="#{wardImportView.status}">
+						<p:rowEditor />
+					</p:column>
+				</p:dataTable>
+				<p:commandButton value="Lưu" styleClass="btnSave"
+					actionListener="#{wardImportView.btnSaveClick}"
+					disabled="#{wardImportView.statusbtn}"></p:commandButton>
+				<p:commandButton value="Trang chủ"
+					action="#{wardImportView.btnBackClick}" style="width:100%"
+					styleClass="btnSave"></p:commandButton>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

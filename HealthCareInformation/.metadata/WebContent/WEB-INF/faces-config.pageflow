@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14479524556260" configfile="/HealthCareInformation/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14479524629771" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14479524629772" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" id="pf14479524629773" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14479524629772" path="home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf14479524629774" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14479524629775" path="/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14479524629776" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14479524629775" path="login.xhtml"/>
+  <links id="pf14479524629772" target="pf14479524629773" source="pf14479524629771" outcome="home" redirect="true" fromaction="#{login.validateUsernamePassword}"/>
+  <links id="pf14479524629775" target="pf14479524629776" source="pf14479524629774" outcome="logout" redirect="true" fromaction="#{login.exit}"/>
+</pageflow:Pageflow>

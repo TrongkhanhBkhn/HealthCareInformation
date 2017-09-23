@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login Account</title>
+
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/resources/css/stylelogin.css" />
+
+</h:head>
+<h:body>
+
+	<h:form styleClass="login-block" id="form" style="width:400px">
+		<p:growl id="msgs" autoUpdate="true" />
+		<p:outputLabel value="Lựa Chọn Thông Số"
+			style="color:red;padding-left: 30px;font-size: 24px;"></p:outputLabel>
+		<p:panelGrid columns="1">
+			
+			<p:outputLabel value="Loại Báo Cáo" style="color:blue"></p:outputLabel>
+			<p:selectOneMenu id="reportId" effect="fold" editable="true"
+				style="width:350px " value="#{reportOptionProvince.reportType}">
+				<f:selectItem itemLabel="Loại báo cáo" />
+				<p:ajax event="change" update="org"
+					listener="#{reportOptionProvince.onChanged}" />
+				<f:selectItems value="#{reportOptionProvince.reportTypes}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Đơn vị cấp huyện" style="color:blue"></p:outputLabel>
+			<p:selectOneMenu id="org" effect="fold" editable="true"
+				disabled="#{reportOptionProvince.status}" style="width:350px "
+				value="#{reportOptionProvince.org}">
+				<f:selectItem itemLabel="Đơn vị tổ chức" />
+				<f:selectItems value="#{reportOptionProvince.orgs}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Kỳ Báo cáo" style="color:blue"></p:outputLabel>
+			<p:selectOneMenu id="periodId" effect="fold" editable="true"
+				style="width:350px " value="#{reportOptionProvince.periodType}">
+				<f:selectItem itemLabel="Kỳ báo cáo" />
+
+				<f:selectItems value="#{reportOptionProvince.periodTypes}" />
+			</p:selectOneMenu>
+			<p:commandButton value="Đồng ý"
+				action="#{reportOptionProvince.btnOKClick}" style="width:100%"></p:commandButton>
+			<p:commandButton value="Trang chủ"
+				action="#{reportOptionProvince.btnBackClick}" style="width:100%"></p:commandButton>
+		</p:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

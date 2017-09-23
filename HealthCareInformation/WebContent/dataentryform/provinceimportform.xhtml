@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<h:body>
+	<ui:composition template="/common/common.xhtml">
+		<ui:define name="content">
+			<h:form id="form">
+
+				<p:growl id="msgs" showDetail="true" autoUpdate="true" />
+
+				<p:dataTable var="row" editable="true"
+					value="#{provinceImportView.districts}">
+					<f:facet name="header">#{provinceImportView.dataset_name}</f:facet>
+					<p:ajax event="rowEdit" listener="#{provinceImportView.onRowEdit}"
+						update=":form:msgs" />
+					<p:column headerText="ĐƠN VỊ">
+						<h:outputText value="#{row.organisation}" />
+					</p:column>
+					<p:columns var="column" value="#{provinceImportView.columns}"
+						headerText="#{column.header}" styleClass="ui-editable-column">
+						<p:cellEditor rendered="true">
+							<f:facet name="output">
+								<h:outputText value="#{row.dataelement[column.property]}" style="float:right" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{row.dataelement[column.property]}" validatorMessage="Dữ liệu không trong dải cho phép nhập,vui lòng nhập:0-1000000">
+									<pe:keyFilter mask="num"></pe:keyFilter>
+									<f:validateLongRange minimum="0" maximum="1000000" />
+								</p:inputText>
+							</f:facet>
+						</p:cellEditor>
+					</p:columns>
+					<p:column style="width:150px" headerText="TẠO SỐ LIỆU" visible="#{provinceImportView.status}">
+						<p:rowEditor />
+					</p:column>
+				</p:dataTable>
+				<p:commandButton value="Lưu" styleClass="btnSave"
+					actionListener="#{provinceImportView.btnSaveClick}" disabled="#{provinceImportView.statusbtn}"></p:commandButton>
+				<p:commandButton value="Trang chủ"
+					action="#{provinceImportView.btnBackClick}" style="width:100%" styleClass="btnSave"></p:commandButton>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

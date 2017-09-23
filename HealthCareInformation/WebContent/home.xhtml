@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Home</title>
+</head>
+<h:body>
+	<ui:composition template="/common/common.xhtml">
+		<ui:define name="content">
+			<h:form id="form">
+				<p:growl id="msgs" autoUpdate="true"></p:growl>
+				<p:panelGrid columns="2" styleClass="panelGrid">
+					<p:menu toggleable="true" styleClass="menuSide"
+						style="top:0px;width:300px;">
+						<p:submenu label="TRANG CHỦ" style="font-size: 21px;color: olive;">
+							<p:menuitem value="Trang Chủ" ajax="false" outcome="/home"
+								style="font-size: 25px;color: yellow;" />
+						</p:submenu>
+						<p:submenu label="QUẢN LÝ NHẬP LIỆU"
+							style="font-size: 21px;color: olive;">
+							<p:menuitem value="Nhập Dữ Liệu" ajax="false"
+								style="font-size: 25px;color: yellow;"
+								action="#{accessService.DataEntryService}" />
+
+						</p:submenu>
+						<p:submenu label="BÁO CÁO" style="font-size: 21px; color: olive;">
+							<p:menuitem value="Quản Lý Báo Cáo" ajax="false"
+								style="font-size: 25px;color: yellow;"
+								action="#{accessService.ReportService}" />
+						</p:submenu>
+						<p:submenu label="ĐĂNG KÝ TÀI KHOẢN"
+							style="font-size: 21px; color: olive;">
+							<p:menuitem value="Tạo Tài Khoản" ajax="false"
+								style="font-size: 25px;color: yellow;"
+								action="#{accessService.createUser}" />
+							<p:menuitem value="Thay đổi mật khẩu" ajax="false"
+								style="font-size: 25px;color: yellow;"
+								action="#{accessService.btnChangePass}" />
+							<p:menuitem value="Khóa và xóa tài khoản" ajax="false"
+								style="font-size: 25px;color: yellow;"
+								action="#{accessService.btnChangeStatus}" />
+						</p:submenu>
+						<p:submenu label="THOÁT" style="font-size: 21px; color: olive;">
+							<p:menuitem value="Thoát" style="font-size: 25px; color: yellow;"
+								ajax="false" action="#{login.exit}" />
+						</p:submenu>
+
+					</p:menu>
+					<p:outputPanel>
+						<p:fieldset legend="Giới Thiệu" styleClass="fieldset">
+							<h:panelGrid columns="2" cellpadding="5" styleClass="panelGrid">
+								<p:graphicImage name="images/item1.png" />
+								<h:outputText
+									value="Báo Cáo Số Liệu Phục Vụ Giải Ngân EU các thông tin y tế của 10 tỉnh thành trong cả nước." />
+							</h:panelGrid>
+						</p:fieldset>
+
+						<p:fieldset legend="Báo Cáo Số Liệu Phục Vụ Giải Ngân EU"
+							toggleable="true" toggleSpeed="500">
+							<p:ajax event="toggle" />
+							<h:panelGrid columns="2" cellpadding="5">
+								<p:graphicImage />
+								<h:outputText
+									value="Ứng dụng công nghệ thông tin vào trong đời sống đang là một vấn đề đặt ra đối với nhiều quốc gia đang phát triển trong đó có Việt Nam, trong số đó mạng y tế cũng không nằm ngoài những nhu cầu cấp thiết hiện nay của khoa học trên thế giới cũng như tại Việt Nam. Khái niệm mạng gần như không còn xa lạ với người dân Việt Nam ngày nay nhưng người ta dường như vẫn còn mơ hồ với cái khái niệm mạng y tế, với các chuẩn riêng dành cho y tế như chuẩn DICOM dành cho ảnh y tế và HL7, chuẩn dành cho trao đổi dữ liệu."
+									style="width:100%">
+								</h:outputText>
+							</h:panelGrid>
+						</p:fieldset>
+						<p:fieldset legend="Thông Tin Chung" toggleable="true"
+							toggleSpeed="500">
+							<p:ajax event="toggle" />
+							<h:panelGrid columns="2" cellpadding="5">
+								<h:outputText
+									value="Hệ thống thông tin là một hệ thống bao gồm các yếu tố có quan hệ với nhau cùng làm nhiệm vụ thu thập, xử lý, lưu trữ và phân phối thông tin và dữ liệu và cung cấp một cơ chế phản hồi để đạt được một mục tiêu định trước."></h:outputText>
+							</h:panelGrid>
+						</p:fieldset>
+						<p:fieldset legend="Liên Hệ" toggleable="true" toggleSpeed="500">
+							<p:ajax event="toggle" />
+							<h:panelGrid columns="1" cellpadding="5">
+								<h:outputText value="Mọi thông tin xin liên hê:" />
+								<h:outputText value="Tên: Chung Văn Thành" />
+								<h:outputText value="Số điện thoại: 0912436633" />
+								<h:outputText value="Xin chân thành cảm ơn!" />
+							</h:panelGrid>
+						</p:fieldset>
+					</p:outputPanel>
+				</p:panelGrid>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+
+</html>

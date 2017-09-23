@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<h:body>
+	<ui:composition template="/common/common.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<p:growl id="msgs" autoUpdate="true" />
+				<p:dataTable value="#{provinceReport2View.reports}" var="report"
+					id="groupingTable">
+					<f:facet name="header">
+						<h:outputText value="#{provinceReport2View.nameReport}"></h:outputText>
+					</f:facet>
+					<p:column style="width:50px">
+						<f:facet name="header">
+							<h:outputText value="STT"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{report.index}"></h:outputText>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Tên chỉ tiêu"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{report.organisation}"></h:outputText>
+					</p:column>
+					<p:columns value="#{provinceReport2View.columns}" var="column">
+						<f:facet name="header">
+							<h:outputText value="#{column.header}" />
+						</f:facet>
+						<h:outputText value="#{report.map[report.organisation]}"
+							style="float:right" />
+					</p:columns>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Ghi chú"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{report.note}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+				<p:panel header="Xuất dữ liệu PDF và Excel">
+					<p:commandLink id="pdf" ajax="false">
+						<p:graphicImage value="/resources/images/pdf.png" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="pdf" target="groupingTable"
+							fileName="provincereport2" />
+					</p:commandLink>
+					<p:spacer height="20" />
+
+					<p:commandLink id="xls" ajax="false">
+						<p:graphicImage value="/resources/images/excel.png" />
+						<f:setPropertyActionListener value="false"
+							target="#{exporterController.customExporter}" />
+						<pe:exporter type="xlsx" target="groupingTable"
+							fileName="provincereport2" />
+
+					</p:commandLink>
+				</p:panel>
+				<p:commandButton value="Trang chủ"
+					action="#{provinceReport2View.btnBackClick}" style="width:150px"></p:commandButton>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
